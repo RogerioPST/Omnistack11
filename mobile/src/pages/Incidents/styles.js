@@ -3,6 +3,8 @@ import {StyleSheet} from 'react-native';
 import Constants from 'expo-constants';
 
 
+//n eh igual com css, mas cada propriedade do css eh usada 
+//c padrao camel Case
 export default StyleSheet.create({
     container : {
         flex: 1,

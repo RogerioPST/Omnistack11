@@ -11,6 +11,7 @@ const SessionController = require('./controllers/SessionController');
 
 const routes = express.Router();
 
+//faltou validar se no login, o id esta sendo enviado
 routes.post('/sessions', SessionController.create);
 
 routes.get('/ongs', OngController.index);
@@ -26,6 +27,8 @@ TIPOS DE PARAMETROS:
 */
 
 //celebrate eh usado para validação no backend
+//celebrate usa por baixo dos Panos o Joi
+//dentro de Segments, tem body, params, query, cookies etc
 routes.post('/ongs', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
@@ -37,7 +40,8 @@ routes.post('/ongs', celebrate({
 }), OngController.create);
 
 
-//vai converter Authorization p miniscula, sem problemas.
+//vai converter Authorization p minuscula, sem problemas.
+//o unknown eh necessario p n validar outras propriedades como host
 routes.get('/profile', celebrate({
     [Segments.HEADERS]: Joi.object({
         authorization: Joi.string().required(),
@@ -51,6 +55,7 @@ routes.get('/incidents', celebrate({
     })
 }) ,IncidentController.index);
 
+//faltou validar os campos vindos do body e do header (authorization)
 routes.post('/incidents', IncidentController.create);
 
 routes.delete('/incidents/:id',celebrate({

@@ -1,5 +1,8 @@
 import React from 'react';
+//dentro vector-icons, estao os font awesome, material icons, feather icons
 import {Feather} from '@expo/vector-icons';
+//TouchableOpacity eh como se fosse um botao, mas n tem o estilo especifico do android ou ios
+//tem efeitos de opacidade diferente do button
 import {Linking, Text, View, Image, TouchableOpacity} from 'react-native';
 
 import styles from './styles';
@@ -11,12 +14,13 @@ import * as MailComposer from 'expo-mail-composer';
 export default function Detail(){    
     //<Text style={[styles.incidentProperty, {marginTop: 0}]}>ONG:</Text>
     //acima - dois estilos/duas classes diferentes p o mesmo elemento
-    const navigation = useNavigation();
-    const route = useRoute();
 
+    //navega pelo app
+    const navigation = useNavigation();
     //recupero os parametros
     //no ex, se eu quisesse recuperar o valor de a, faria:
     //const incident = route.params.a;
+    const route = useRoute();        
     const incident = route.params.incident;
     const message= `Olá, ${incident.name}, estou entrando em contato, pois gostaria de ajudar no caso "${incident.title}" com o valor de R$ ${incident.value}`;
 
@@ -36,6 +40,11 @@ export default function Detail(){
         //esse abaixo eh um deep link/linking/
         Linking.openURL(`whatsapp://send?phone=5511983752017&text=${message}`);
     }
+    //n existe div, p, span etc no react-native,
+    //praticamente tudo eh VIew e Text
+    // a tag style eh necessaria para estilizar
+    //o objeto styles foi criado para acessar os estilos especificos de cada tela
+    //para pegar o icon de flech, usar como esta com a tag Feather
     return (
         <View style={styles.container}>
              <View style={styles.header}>

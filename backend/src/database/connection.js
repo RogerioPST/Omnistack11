@@ -3,6 +3,7 @@ const knex = require('knex');
 const configuration = require('../../knexfile');
 
 //buscando a variavel de ambiente definida no package.json
+//a partir do cross-env baixado pelo npm 
 const config = process.env.NODE_ENV == 'test' ? configuration.test : configuration.development;
 
 const connection = knex(config);

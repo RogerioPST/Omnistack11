@@ -1,9 +1,12 @@
+//supertest vai ser usada no lugar de axios para realizar a chamada da API
+//e realizar um teste de integração
 const request = require('supertest');
 const app = require('../../src/app');
 const connection = require('../../src/database/connection');
 
 describe('ONG', () =>{
     //antes dos testes, vou criar as tabelas na base de test
+    //executando as migrations
     beforeEach(async () =>{
         await connection.migrate.rollback();
         await connection.migrate.latest();
